@@ -13,7 +13,7 @@ function Book(title, author, pages, read){
 
 function addBookToLibrary() {
     // do stuff here
-  }
+}
 
 
 const hobbit = new Book("hobbit", "tolkien", 400, false);
