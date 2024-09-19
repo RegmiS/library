@@ -21,5 +21,12 @@ function Book (title, author, pages, read) {
 
 const hobbit = Book("hobbit", "tolkien", 400, false);
 const lotr = Book("lotr", "toklien", 500, "true");
-console.log(hobbit);
-console.log(lotr);
+
+function displayBooks(){
+    const bookList = document.querySelector("#book-list");
+    const content = document.createElement('li');
+    content.textContent = "test";
+    bookList.appendChild(content);
+}
+
+displayBooks();
