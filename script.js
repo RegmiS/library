@@ -4,7 +4,6 @@ function addBookToLibrary(newBook) {
     myLibrary.push(newBook)
 }
 
-// function that loops through and displays each book (table/card)
 // new book button with forms. forms in sidebar? dialogs/modals?
 // button to remove book from library
 // button on book to change display and change it's "read" status
