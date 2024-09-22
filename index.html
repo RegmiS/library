@@ -12,11 +12,11 @@
         <form>
             <div class="name">
                 <label for="bookname">Book Name: </label>
-                <input type="text" id="bookname">
+                <input type="text" id="bookname" required>
             </div>
             <div class="author">
                 <label for="bookauthor">Book Author: </label>
-                <input type="text" id="bookauthor">
+                <input type="text" id="bookauthor" required>
             </div>
             <div class="box">
                 <label for="chbx">Read?</label>
@@ -24,7 +24,7 @@
             </div>
             <div class="length">
                 <label for="booklength">Book length (pages)</label>
-                <input type="number" id="booklength">
+                <input type="number" id="booklength" pattern="*[0-9]" required>
             </div>
 
             <button type="submit" id="submit-btn">Submit</button>
@@ -33,7 +33,7 @@
 
     <div class="main-body">
         <ul id="book-list">
-            <li>Item 1 <button>test</button></li>
+            
         </ul>
     </div>
 </body>

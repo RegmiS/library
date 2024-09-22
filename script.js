@@ -4,10 +4,6 @@ function addBookToLibrary(newBook) {
     myLibrary.push(newBook)
 }
 
-// new book button with forms. forms in sidebar? dialogs/modals?
-// button to remove book from library
-// button on book to change display and change it's "read" status
-
 function Book (title, author, pages, read) {
     const wasRead = () => read=true;
     const notRead = () => read=false;
@@ -19,20 +15,45 @@ function Book (title, author, pages, read) {
 }
 
 const hobbit = Book("hobbit", "tolkien", 400, false);
-const lotr = Book("lotr", "toklien", 500, "true");
+const lotr = Book("lotr", "toklien", 500, true);
 addBookToLibrary(hobbit);
 addBookToLibrary(lotr);
 
 const bookList = document.querySelector("#book-list");
 
 function displayBooks(){
+    bookList.innerHTML = "";
     for (let x = 0; x < myLibrary.length; x++){
         const eachBook = myLibrary[x];
-        console.log(eachBook);
         const content = document.createElement('li');
         content.textContent = eachBook.info();
         bookList.appendChild(content);
     }
+}
+
+const bookName = document.getElementById('bookname');
+const bookAuthor = document.getElementById('bookauthor');
+const readOrNot = document.getElementById('chbx');
+const bookLength = document.getElementById('booklength');
+
+const btn = document.querySelector('#submit-btn');
+btn.addEventListener("click", btnClick, false);
+function btnClick(event) {
+    if (bookName.checkValidity() && bookAuthor.checkValidity() && readOrNot.checkVisibility() && bookLength.checkValidity()){
+        let name = bookName.value;
+        let bookAuthorVal = bookAuthor.value;
+        let readBool = readOrNot.value;
+        let bookLengthVal = bookLength.value;
+        const newBook = Book(name, bookAuthorVal, bookLengthVal, readBool);
+        addBookToLibrary(newBook);
+        displayBooks();
+        bookName.value = "";
+        bookAuthor.value = "";
+        readOrNot.value = false;
+        bookLength.value = "";
+
+    }
+    event.preventDefault();
 }
 
 displayBooks();
