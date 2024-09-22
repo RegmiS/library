@@ -1,0 +1,27 @@
+body {
+    display:grid;
+    grid-template-columns: 40vw 60vw;
+    grid-template-rows: 100vh 100vh;
+}
+
+.sidebar {
+    display: grid;
+}
+
+.mainbody {
+    display: grid;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+}
+
+#submit-btn {
+    width: 100px;
+}
+
+form div {
+    padding: 10px;
+}

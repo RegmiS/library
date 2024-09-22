@@ -10,19 +10,24 @@
 <body>
     <div class="sidebar">
         <form>
-            <input type="text" id="bookname">
-            <label for="bookname">Book Name: </label>
+            <div class="name">
+                <label for="bookname">Book Name: </label>
+                <input type="text" id="bookname">
+            </div>
+            <div class="author">
+                <label for="bookauthor">Book Author: </label>
+                <input type="text" id="bookauthor">
+            </div>
+            <div class="box">
+                <label for="chbx">Read?</label>
+                <input type="checkbox" id="chbx"/>
+            </div>
+            <div class="length">
+                <label for="booklength">Book length (pages)</label>
+                <input type="number" id="booklength">
+            </div>
 
-            <input type="text" id="bookauthor">
-            <label for="bookauthor">Book Author: </label>
-
-            <input type="checkbox" id="chbx"/>
-            <label for="chbx">Read?</label>
-
-            <input type="number" id="booklength">
-            <label for="booklength">Book length (pages)</label>
-            
-            <button type="submit">Submit</button>
+            <button type="submit" id="submit-btn">Submit</button>
         </form>
     </div>
 
