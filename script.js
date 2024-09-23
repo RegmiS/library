@@ -7,11 +7,12 @@ function addBookToLibrary(newBook) {
 function Book (title, author, pages, read) {
     const wasRead = () => read=true;
     const notRead = () => read=false;
+    const readVal = () => {return read};
     const info = () => {
         let str = read ? "read" : "not read yet";
         return `${title} by ${author}, ${pages} pages, ${str}`;
     };
-    return { title, author, pages, read, info, wasRead, notRead };
+    return { title, author, pages, read, info, wasRead, notRead, readVal };
 }
 
 const hobbit = Book("hobbit", "tolkien", 400, false);
@@ -27,6 +28,18 @@ function removeBook(book){
     displayBooks();
 }
 
+function readBook(book){
+    let index = myLibrary.indexOf(book);
+    myLibrary[index].wasRead();
+    displayBooks();
+}
+
+function unreadBook(book){
+    let index = myLibrary.indexOf(book);
+    myLibrary[index].notRead();
+    displayBooks();
+}
+
 function displayBooks(){
     bookList.innerHTML = "";
     for (let x = 0; x < myLibrary.length; x++){
@@ -39,8 +52,20 @@ function displayBooks(){
         button.addEventListener('click', () => {
             removeBook(eachBook);
         });
-        
+
+        const readBtn = document.createElement('button');
+        readBtn.innerHTML = eachBook.readVal() ? "Unread" : "Read";
+        readBtn.addEventListener('click', () => {
+            if (eachBook.readVal() == true){
+                unreadBook(eachBook);
+            }
+            else {
+                readBook(eachBook);
+            }
+        });
+
         content.appendChild(button);
+        content.appendChild(readBtn);
         bookList.appendChild(content);
     }
 }
