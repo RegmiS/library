@@ -8,33 +8,41 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="sidebar">
-        <form>
-            <div class="name">
-                <label for="bookname">Book Name: </label>
-                <input type="text" id="bookname" required>
-            </div>
-            <div class="author">
-                <label for="bookauthor">Book Author: </label>
-                <input type="text" id="bookauthor" required>
-            </div>
-            <div class="box">
-                <label for="chbx">Read?</label>
-                <input type="checkbox" id="chbx"/>
-            </div>
-            <div class="length">
-                <label for="booklength">Book length (pages)</label>
-                <input type="number" id="booklength" pattern="*[0-9]" required>
-            </div>
-
-            <button type="submit" id="submit-btn">Submit</button>
-        </form>
+    <div class="body-content">
+        <div class="main-form">
+            <form>
+                <div class="name">
+                    <label for="bookname">Book Name: </label>
+                    <input type="text" id="bookname" required>
+                </div>
+                <div class="author">
+                    <label for="bookauthor">Book Author: </label>
+                    <input type="text" id="bookauthor" required>
+                </div>
+                <div class="box">
+                    <label for="chbx">Read?</label>
+                    <input type="checkbox" id="chbx"/>
+                </div>
+                <div class="length">
+                    <label for="booklength">Book length (pages)</label>
+                    <input type="number" id="booklength" pattern="*[0-9]" required>
+                </div>
+                <button type="submit" id="submit-btn">Submit</button>
+            </form>
+        </div>
+    
+        <div class="main-body">
+            <ul id="book-list">
+                
+            </ul>
+        </div>
     </div>
-
-    <div class="main-body">
-        <ul id="book-list">
-            
-        </ul>
-    </div>
+    
+    <footer>
+        <a href="https://github.com/RegmiS" target="_blank" rel="noopener noreferrer">
+            Developed by RegmiS
+            <img src="images/github.svg" alt=""/>
+        </a>
+    </footer>
 </body>
 </html>
