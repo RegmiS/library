@@ -58,12 +58,12 @@ form div {
 }
 
 .main-body {
-    padding-left: 30px;
     display: flex;
     width: 80vw;
     border: 1px solid;
     border-radius: 15px;
     background-color: #1d3c61;
+    padding: 5%;
 }
 
 .main-form {
@@ -77,14 +77,6 @@ form div {
 .form-item {
     display: flex;
     align-items: center;
-}
-
-ul {
-    width: 100%;
-}
-
-li {
-    list-style: none;
 }
 
 .book-items {

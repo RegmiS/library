@@ -1,98 +1,86 @@
-const myLibrary = [];
-
-function addBookToLibrary(newBook) {
-    myLibrary.push(newBook)
-}
-
-function Book (title, author, pages, read) {
-    const wasRead = () => read=true;
-    const notRead = () => read=false;
-    const readVal = () => {return read};
-    const info = () => {
-        let str = read ? "read" : "not read yet";
-        return `${title} by ${author}, ${pages} pages, ${str}`;
-    };
-    return { title, author, pages, read, info, wasRead, notRead, readVal };
-}
-
-const hobbit = Book("hobbit", "tolkien", 400, false);
-const lotr = Book("lotr", "toklien", 500, true);
-addBookToLibrary(hobbit);
-addBookToLibrary(lotr);
-
-const bookList = document.querySelector("#book-list");
-
-function removeBook(book){
-    let index = myLibrary.indexOf(book);
-    myLibrary.splice(index, 1);
-    displayBooks();
-}
-
-function readBook(book){
-    let index = myLibrary.indexOf(book);
-    myLibrary[index].wasRead();
-    displayBooks();
-}
-
-function unreadBook(book){
-    let index = myLibrary.indexOf(book);
-    myLibrary[index].notRead();
-    displayBooks();
-}
-
-function displayBooks(){
-    bookList.innerHTML = "";
-    for (let x = 0; x < myLibrary.length; x++){
-        const eachBook = myLibrary[x];
-        const content = document.createElement('li');
-        content.textContent = eachBook.info();
-
-        const button = document.createElement('button');
-        button.innerHTML = "Remove";
-        button.addEventListener('click', () => {
-            removeBook(eachBook);
-        });
-
-        const readBtn = document.createElement('button');
-        readBtn.innerHTML = eachBook.readVal() ? "Unread" : "Read";
-        readBtn.addEventListener('click', () => {
-            if (eachBook.readVal() == true){
-                unreadBook(eachBook);
-            }
-            else {
-                readBook(eachBook);
-            }
-        });
-
-        content.appendChild(button);
-        content.appendChild(readBtn);
-        bookList.appendChild(content);
+class Library {
+    myLibrary = [];
+    add(Book){
+        this.myLibrary.push(Book);
+    }
+    remove(Book){
+        this.myLibrary.splice(this.myLibrary.findIndex(val => val==Book),1);
+    }
+    getAll(){
+        return this.myLibrary;
     }
 }
 
-const bookName = document.getElementById('bookname');
-const bookAuthor = document.getElementById('bookauthor');
-const readOrNot = document.getElementById('chbx');
-const bookLength = document.getElementById('booklength');
-
-const btn = document.querySelector('#submit-btn');
-btn.addEventListener("click", btnClick, false);
-
-function btnClick(event) {
-    if (bookName.checkValidity() && bookAuthor.checkValidity() && readOrNot.checkVisibility() && bookLength.checkValidity()){
-        let name = bookName.value;
-        let bookAuthorVal = bookAuthor.value;
-        let readBool = readOrNot.value;
-        let bookLengthVal = bookLength.value;
-        const newBook = Book(name, bookAuthorVal, bookLengthVal, readBool);
-        addBookToLibrary(newBook);
-        displayBooks();
-        bookName.value = "";
-        bookAuthor.value = "";
-        readOrNot.value = false;
-        bookLength.value = "";
+class Book {
+    constructor (title, author, pages, read){
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
     }
-    event.preventDefault();
+    unread(){
+        this.read = false;
+    }
+    read() {
+        this.read = true;
+    }
+    getTitle() {return this.title;}
+    getAuthor() {return this.author;}
+    getPages() {return this.pages;}
+    getRead() {return this.read;}
+    swapStates() {console.log("test");}
 }
 
-displayBooks();
+let library = new Library();
+let hobbit = new Book("hobbit", "tolkien", 400, false);
+library.add(hobbit);
+let lotr = new Book("lotr", "toklien", 500, true);
+library.add(lotr);
+
+// const attachUpdate = (book) => {
+
+// }
+
+const renderBooks = () => {
+    const bookslist = document.querySelector('#book-list');
+    bookslist.innerHTML = "";
+    library.getAll().forEach(book => {
+        const divMain = document.createElement("div");
+
+        const titleEl = document.createElement("p");
+        titleEl.classList = "";
+        titleEl.innerHTML = book.getTitle();
+        divMain.appendChild(titleEl);
+
+        const authorEl = document.createElement("p");
+        authorEl.classList = "";
+        authorEl.innerHTML = book.getAuthor();
+        divMain.appendChild(authorEl);
+
+        const pagesEl = document.createElement("p");
+        pagesEl.classList = "";
+        pagesEl.innerHTML = book.getPages();
+        divMain.appendChild(pagesEl);
+
+        const statusEl = document.createElement("p");
+        statusEl.classList = "";
+        statusEl.innerHTML = book.getRead();
+        divMain.appendChild(statusEl);
+
+        const buttonRead = document.createElement("button");
+        buttonRead.classList = "";
+        buttonRead.innerHTML = "Update";
+        buttonRead.addEventListener('click', book.swapStates.bind(buttonRead));
+        divMain.appendChild(buttonRead);
+
+        const buttonDel = document.createElement("button");
+        buttonDel.classList = "";
+        buttonDel.innerHTML = "Remove";
+        buttonDel.addEventListener('click', book.swapStates.bind(buttonDel));
+        
+        divMain.appendChild(buttonDel);
+        bookslist.appendChild(divMain);
+    });
+}
+
+renderBooks();
