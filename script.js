@@ -28,7 +28,14 @@ class Book {
     getAuthor() {return this.author;}
     getPages() {return this.pages;}
     getRead() {return this.read;}
-    swapStates() {console.log("test");}
+    swapStates() {
+        if(this.read == true){
+            this.read = false;
+        }
+        else{
+            this.read = true;
+        }
+    }
 }
 
 let library = new Library();
@@ -37,9 +44,15 @@ library.add(hobbit);
 let lotr = new Book("lotr", "toklien", 500, true);
 library.add(lotr);
 
-// const attachUpdate = (book) => {
+const attachUpdate = (book) => {
+    book.swapStates();
+    renderBooks();
+}
 
-// }
+const removeBook = (book) => {
+    library.remove(book);
+    renderBooks();
+}
 
 const renderBooks = () => {
     const bookslist = document.querySelector('#book-list');
@@ -70,14 +83,14 @@ const renderBooks = () => {
         const buttonRead = document.createElement("button");
         buttonRead.classList = "";
         buttonRead.innerHTML = "Update";
-        buttonRead.addEventListener('click', book.swapStates.bind(buttonRead));
+        buttonRead.addEventListener('click', attachUpdate.bind(buttonRead, book));
         divMain.appendChild(buttonRead);
 
         const buttonDel = document.createElement("button");
         buttonDel.classList = "";
         buttonDel.innerHTML = "Remove";
-        buttonDel.addEventListener('click', book.swapStates.bind(buttonDel));
-        
+        buttonDel.addEventListener('click', removeBook.bind(buttonDel, book));
+
         divMain.appendChild(buttonDel);
         bookslist.appendChild(divMain);
     });
