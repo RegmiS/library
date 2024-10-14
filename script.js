@@ -59,35 +59,36 @@ const renderBooks = () => {
     bookslist.innerHTML = "";
     library.getAll().forEach(book => {
         const divMain = document.createElement("div");
+        divMain.classList = "book-items";
 
         const titleEl = document.createElement("p");
-        titleEl.classList = "";
+        titleEl.classList = "book-items-list";
         titleEl.innerHTML = book.getTitle();
         divMain.appendChild(titleEl);
 
         const authorEl = document.createElement("p");
-        authorEl.classList = "";
+        authorEl.classList = "book-items-list";
         authorEl.innerHTML = book.getAuthor();
         divMain.appendChild(authorEl);
 
         const pagesEl = document.createElement("p");
-        pagesEl.classList = "";
+        pagesEl.classList = "book-items-list";
         pagesEl.innerHTML = book.getPages();
         divMain.appendChild(pagesEl);
 
         const statusEl = document.createElement("p");
-        statusEl.classList = "";
+        statusEl.classList = "book-items-list";
         statusEl.innerHTML = book.getRead();
         divMain.appendChild(statusEl);
 
         const buttonRead = document.createElement("button");
-        buttonRead.classList = "";
+        buttonRead.classList = "book-items-list";
         buttonRead.innerHTML = "Update";
         buttonRead.addEventListener('click', attachUpdate.bind(buttonRead, book));
         divMain.appendChild(buttonRead);
 
         const buttonDel = document.createElement("button");
-        buttonDel.classList = "";
+        buttonDel.classList = "book-items-list";
         buttonDel.innerHTML = "Remove";
         buttonDel.addEventListener('click', removeBook.bind(buttonDel, book));
 
