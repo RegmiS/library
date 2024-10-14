@@ -96,4 +96,26 @@ const renderBooks = () => {
     });
 }
 
+const bookName = document.getElementById('bookname');
+const bookAuthor = document.getElementById('bookauthor');
+const readOrNot = document.getElementById('chbx');
+const bookLength = document.getElementById('booklength');
+const btn = document.querySelector('#submit-btn');
+
+
+const btnClick = (event) => {
+    if (bookName.checkValidity() && bookAuthor.checkValidity() && readOrNot.checkVisibility() && bookLength.checkValidity()){
+        let name = bookName.value;
+        let bookAuthorVal = bookAuthor.value;
+        let readBool = readOrNot.value;
+        let bookLengthVal = bookLength.value;
+        const newBook = new Book(name, bookAuthorVal, bookLengthVal, readBool);
+        library.add(newBook);
+        renderBooks();
+    }
+    event.preventDefault();
+}
+btn.addEventListener("click", btnClick, false);
+
+
 renderBooks();
